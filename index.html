@@ -68,7 +68,8 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <!--  top line -->    
+    <!--  top line -->
+    Home  |  Whitelist | Updates  
 
     <!-- all contenets --> 
     <div class="w_cn"> 
@@ -96,11 +97,33 @@
               here you can find helpful information on how to start playing<br>
               or  just the ip.
               if you already know how just look on the right >>>><br><br>
-
-                M-ake sure to join the discord sever <a href="https://discord.gg/sXgXec">here!</a>
-              </div>  
-              <div class="box"> (MCPC1)[JAVA] IP : mc.parkrose.cf<br>[Bedrock] IP :comming soon 
+              
+                This server is whitelisted in order to play just follow the steps in the form<br>
+                <br>
                 
+                Or just ask in the discord.<br>
+                
+                Click here to join the discord sever <a href="https://discord.gg/sXgXec">here!</a>
+              </div>  
+              <div class="box"> IP : mc.parkrose.cf<br>
+                  
+                <script src="https://mcapi.us/scripts/minecraft.js"></script>
+                <div class="server-status">
+                  STATUS: <span class="server-online"></span>
+                </div>
+                <script>
+
+                  MinecraftAPI.getServerStatus('45.79.97.151', {port: 25565 }, function (err, status) {
+                    if (err) {
+                      return document.querySelector('.server-status').innerHTML = 'Error loading status';
+                    }
+
+                    var str = status.online ? '[Online]' : '[Offline]';
+                    document.querySelector('.server-online').innerHTML = str + "[" +  status.players.now + "/" + status.players.max + "]" + "[" + status.server.name + "]"
+                    // YES THERON DID WRITE THIS JAVASCRIPT TO!
+
+                  });
+                </script>
               </div>
             </div>
           </div>
@@ -128,25 +151,7 @@
                 paste by using crtl+v or on mac ⌘ Cmd+V<br>
                 
               </div>  
-              <div class="box"> <script src="https://mcapi.us/scripts/minecraft.js"></script>
-                <div class="server-status">
-                  Status MCPC1: <span class="server-online"></span>
-                </div>
-                <script>
-                  
-                  MinecraftAPI.getServerStatus('45.79.97.151', {port: 25565 }, function (err, status) {
-                    if (err) {
-                      return document.querySelector('.server-status').innerHTML = 'Error loading status';
-                    }
-                    
-                    var str = status.online ? '[Online]' : '[Offline]';
-                    document.querySelector('.server-online').innerHTML = str + "[" +  status.players.now + "/" + status.players.max + "]" + "[" + status.server.name + "]"
-                    // YES THERON DID WRITE THIS JAVASCRIPT TO!
 
-                  });
-                </script> 
-
-              </div>
             </div>
           </div>
         </div>
