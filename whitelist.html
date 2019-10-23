@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <!-- yes motherfucker i wrote this website Theron Akubuiro a good coder from scratch --> 
+  <!-- yes motherf---r i wrote this website Theron Akubuiro a good coder from scratch --> 
   <head>
 
     <link rel="stylesheet" media="screen" href="https://fontlibrary.org/face/minecraftia" type="text/css"/>
@@ -97,6 +97,77 @@
 
 
     </style> 
+    <script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+    <script>
+      function csvJSON(csv){
+
+        var lines=csv.split("\n");
+
+        var result = [];
+
+        var headers=lines[0].split(",");
+
+        for(var i=1;i<lines.length;i++){
+
+          var obj = {};
+          var currentline=lines[i].split(",");
+
+          for(var j=0;j<headers.length;j++){
+            obj[headers[j]] = currentline[j];
+          }
+
+          result.push(obj);
+
+        }
+
+        //return result; //JavaScript object
+        return result //JSON
+
+      }// this took along time
+      //
+      //  so please dont copy my code like and dont make fun of it im a good programmer i swear
+      //
+      var f = false;
+      setInterval(function(){ 
+        $.ajax("https://docs.google.com/spreadsheets/d/e/2PACX-1vT2qtSvi5n2QySioWtjczFW1OuFCbOnuXwj7qRl0196p3tlMAFm_7VV9FYefv8p3ZHVRvnALmwTpuqv/pub?gid=1370183677&single=true&output=csv").done(function(result){
+        var value = csvJSON(result)
+        var value2 = JSON.stringify(value)
+        
+        var table = "<table>";
+        table = table + "<tr><td>username</td><td>status</td><td>IRL name</td></tr>"
+        for(var i=0;i < value.length;i++)
+        {
+          table = table + "<tr>"
+          table = table + "<td>" + value[i]["What is your in-game username?"] + "</td>";
+          
+          
+          
+          
+          if (value[i]["status\r"] == "\r") 
+          {
+            table = table + "<td>" + "Under Review" + "</td>";
+          }else
+          {
+
+            table = table + "<td>" + value[i]["status\r"] + "</td>";
+          }
+          
+          
+          
+          if (value[i]["What is your first name?"] == "") 
+          {
+            table = table + "<td>" + "No record" + "</td>";
+          }else
+          {
+            table = table + "<td>" + value[i]["What is your first name?"]+ "</td>";
+          }
+          
+          table = table + "</tr>"
+        }
+        table = table + "</table>";
+        document.getElementById("whitelist").innerHTML = table;
+      });}, 1);
+    </script>
   </head>
   <body>
     <!--  top line -->
@@ -114,11 +185,11 @@
         shows whitelisted players
       </div>
 
-      <!-- devider lmao wtf this literally adds space because a nigga lazy --> 
+      <!-- devider lmao wtf this literally adds space because a guylazy --> 
       <br>
 
 
-      <!-- devider lmao wtf this literally adds space because a nigga lazy a gain --> 
+      <!-- devider lmao wtf this literally adds space because a guy lazy a gain --> 
       <br>
       
       <div class="cn_spec2"> 
@@ -131,9 +202,9 @@
                 
                 Fill out <a target="_blank" href="https://forms.gle/ciFE5cvnVyWdwEKi6">this</a> google form.
                 <br><br>
-                You can pm c2a4x6 on discord to get whitelisted.
-                <br><br>
-                Names on whitelist is optional only if requested.
+                You can pm someone on discord if for some reason, <br> 
+                you actually dont get whitelisted.<br><br>
+                Names on whitelist can be removed if requested.
 
               </div>  
 
@@ -151,54 +222,14 @@
           <div class="sub">
             <div class="cn_left">
               <div  class="ebox"> 
-               Current whitelisted players
-                <table>
-                  <tr>
-                    <th>username</th>
-                    <th>status</th>
-                    <th>nIRL name</th>
-                  </tr>
-                  <tr>
-                    <td>noofd</td>
-                    <td>whitelisted</td>
-                    <td>theron</td>
-                  </tr>
-                  <tr>
-                    <td>c2a4x6</td>
-                    <td>whitelisted</td>
-                    <td>eli</td>
-                  </tr>
-                  <tr>
-                    <td>mega_donut</td>
-                    <td>whitelisted</td>
-                    <td>jonah</td>
-                  </tr>
-                  <tr>
-                    <td>_wonton</td>
-                    <td>Whitelisted</td>
-                  </tr>
-                  <tr>
-                    <td>_MiniPotatoes_</td>
-                    <td>Whitelisted</td>
-                    <td>trong</td>
-                  </tr>
-                  <tr>
-                    <td>RichRain</td>
-                    <td>Whitelisted</td>
-                  </tr>
-                  <tr>
-                    <td>MurdererOfIncels</td>
-                    <td>Whitelisted</td>
-                  </tr>
-                  <tr>
-                    <td>michell0</td>
-                    <td>Whitelisted</td>
-                  </tr>
-                  <tr>
-                    <td>YoungBro_Rumpa</td>
-                    <td>Pending</td>
-                  </tr>
-                </table>
+               Current whitelisted under review and processed players<br><br> 
+                
+              it can take up to 2 minutes before the form is recieved <br><br> 
+                
+                <div id="whitelist">
+                </div>
+                <br>
+                profanity is filtered out by google not us.
 
             </div>
           </div>
@@ -206,7 +237,7 @@
       </div><br>
 
       <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-      <br><br><br><div class = "bot_text">Website created by Theron   | Server created by eli. | Server info (<a href="https://mcapi.us/">mcapi</a>)</div> 
+        <br><br><br><div class = "bot_text">Website programmed by Theron   | Server created by eli. | API's Used (<a href="https://mcapi.us/">mcapi</a>) (<a href="https://jquery.com/">Jquery</a>) (<a href="https://timeago.yarp.com/">timeago</a>)  | html5,JS </div> 
     </div>
       
   </body>
