@@ -253,12 +253,11 @@
       <div class="cn_spec2"> 
         <div class="cn_box">
           <div id="b"></div>
-        Updates for comments are slow and can take up to 2minutes
         <form action="https://docs.google.com/forms/d/e/1FAIpQLSfYJVEfbJdM2yO7S11PH0jgFXwVqYd1LFJPmdcoK3hWXybRrg/formResponse"
             target="_self"
             id="bootstrapForm"
             method="POST">
-          <legend for="552899206">Post a comment (BETA)</legend>
+          <legend for="552899206">Post a comment (beta)</legend>
           
           <div class="form-group">
             <input id="1287446727" type="text" name="entry.1287446727" class="form-control" required>
@@ -286,7 +285,10 @@
         error: function () {
         // Submit of form should be successful but JSONP callback will fail because Google Forms
         // does not support it, so this is handled as a failure.
-          document.getElementById("b").innerHTML = "Your Comment has been submitted";
+   document.getElementById("1287446727").setAttribute("value", "");
+          document.getElementById("1287446727").value ="";
+          alert("Your Comment has been submitted \n May take up to 2mins to post.");
+        
         // You can also redirect the user to a custom thank-you page:
         // window.location = 'http://www.mydomain.com/thankyoupage.html'
         }
