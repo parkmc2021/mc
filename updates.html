@@ -44,6 +44,30 @@
         return result //JSON
 
       }// this took along time
+      $.ajax("https://docs.google.com/spreadsheets/d/e/2PACX-1vQuPj89fLuNvjqPPHNlZKlxBfFBYAV9Z1pqcPfk_BIhsqNU-uaInLN1nW5xE2zF4gtF082VsvIJi7X5/pub?output=csv").done(function(result){
+        var value = csvJSON(result)
+        var html = "";
+        var subhtml = "";
+        for(var i=value.length-1;i>=0;i--)
+        {
+          subhtml = "";
+          subhtml = subhtml + "<div class=\"cn_spec2\"> \r\n      <div class=\"cn_box\">\r\n        <div class=\"sub\">\r\n          <div class=\"cn_left\">\r\n            <div  class=\"ebox\"> \r\n              <div class=\"s_tlt\">"
+          subhtml = subhtml + value[i]["Title"] + "<hr>\r\n\r\n              <\/div>"
+          subhtml = subhtml + "<div class=\"content\">" +value[i]["Content\r"]
+          subhtml = subhtml + "</div> \r\n\r\n              <div class=\"s\">Posted by " + value[i]["Poster"]  + " (<time class=\"timeago\" datetime=\"" + value[i]["Timestamp"] + "\"><\/time>)<\/div> \r\n      \r\n            <\/div>  \r\n\r\n          <\/div>\r\n        <\/div>\r\n      <\/div>\r\n    <\/div><br>"
+
+
+          if(value[i]["Title"] == undefined) 
+          {
+            subhtml = "";
+          }
+          html = html + subhtml; 
+        }
+
+        document.getElementById("whitelist").innerHTML = html;
+        l();
+        lol(value.length);
+      });
       setInterval(function(){$.ajax("https://docs.google.com/spreadsheets/d/e/2PACX-1vQuPj89fLuNvjqPPHNlZKlxBfFBYAV9Z1pqcPfk_BIhsqNU-uaInLN1nW5xE2zF4gtF082VsvIJi7X5/pub?output=csv").done(function(result){
         var value = csvJSON(result)
         var html = "";
@@ -70,7 +94,7 @@
       });
                             
                             
-                            },100);
+                            },60000);
     </script>
     
     
