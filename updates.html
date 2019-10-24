@@ -288,6 +288,27 @@
           return result //JSON
 
         }// this took along time
+        $.ajax("https://docs.google.com/spreadsheets/d/e/2PACX-1vReQvaL5tZJQjEyNl2OCMVDfElkZH2hNkpm44OgQ-Kj-ty8Y7pDuiSSj-2ARkTGMNI7Y1_3O4gUc3g-/pub?output=csv").done(function(result){
+          var value = csvJSON(result)
+          var com2 = [];
+          var com3 = [];
+          console.log(value);
+          for(var i=0;i < value.length;i++)
+          {
+            com2[com2.length] =  value[i]["comment\r"]
+            com3[com3.length] =  value[i]["Timestamp"]
+          }
+
+          var com = "";
+          for(var i=com2.length-1;i >= 0;i--)
+          {
+            com = com + "<div class=\"comm\">" + com2[i];
+            com = com + " (<time class=\"timeago\" datetime=\"" +  com3[i] + "\"><\/time>)"
+            com = com + "</div>"
+          }
+          document.getElementById("com").innerHTML = com;
+          l();
+        });
         setInterval(function(){$.ajax("https://docs.google.com/spreadsheets/d/e/2PACX-1vReQvaL5tZJQjEyNl2OCMVDfElkZH2hNkpm44OgQ-Kj-ty8Y7pDuiSSj-2ARkTGMNI7Y1_3O4gUc3g-/pub?output=csv").done(function(result){
           var value = csvJSON(result)
           var com2 = [];
@@ -308,7 +329,7 @@
           }
           document.getElementById("com").innerHTML = com;
         l();
-        });},1000) 
+        });},60000) 
       </script>
       
       
