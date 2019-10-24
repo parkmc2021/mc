@@ -1,3 +1,8 @@
+
+<!-- ---><!-- --->
+<!-- ---><!-- --->
+<!-- ---><!--   THIS HAS GOT SO COMPLICATED THAT I CAN BARELY UNDERSTAND only some stuff is copy pasted from stock overflow it will be credited soon --->
+<!-- ---><!-- --->
 <!DOCTYPE html>
 <html>
   <!-- yes i wrote this website Theron Akubuiro a good coder from scratch --> 
@@ -5,9 +10,15 @@
     
     
     
-    
+  
     <script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+    <script src="http://malsup.github.com/jquery.form.js"></script> 
     <script>
+      var once = false; 
+      function lol(k)
+      {
+
+      }
       function csvJSON(csv){
 
         var lines=csv.split("\n");
@@ -35,7 +46,6 @@
       }// this took along time
       setInterval(function(){$.ajax("https://docs.google.com/spreadsheets/d/e/2PACX-1vQuPj89fLuNvjqPPHNlZKlxBfFBYAV9Z1pqcPfk_BIhsqNU-uaInLN1nW5xE2zF4gtF082VsvIJi7X5/pub?output=csv").done(function(result){
         var value = csvJSON(result)
-        console.log(value);
         var html = "";
         var subhtml = "";
         for(var i=value.length-1;i>=0;i--)
@@ -43,8 +53,9 @@
           subhtml = "";
           subhtml = subhtml + "<div class=\"cn_spec2\"> \r\n      <div class=\"cn_box\">\r\n        <div class=\"sub\">\r\n          <div class=\"cn_left\">\r\n            <div  class=\"ebox\"> \r\n              <div class=\"s_tlt\">"
           subhtml = subhtml + value[i]["Title"] + "<hr>\r\n\r\n              <\/div>"
-          subhtml = subhtml + value[i]["Content\r"]
-          subhtml = subhtml + "<br> \r\n\r\n              <div class=\"s\">Posted by " + value[i]["Poster"]  + " (<time class=\"timeago\" datetime=\"" + value[i]["Timestamp"] + "\"><\/time>)<\/div> \r\n      \r\n            <\/div>  \r\n\r\n          <\/div>\r\n        <\/div>\r\n      <\/div>\r\n    <\/div><br>"
+          subhtml = subhtml + "<div class=\"content\">" +value[i]["Content\r"]
+          subhtml = subhtml + "</div> \r\n\r\n              <div class=\"s\">Posted by " + value[i]["Poster"]  + " (<time class=\"timeago\" datetime=\"" + value[i]["Timestamp"] + "\"><\/time>)<\/div> \r\n      \r\n            <\/div>  \r\n\r\n          <\/div>\r\n        <\/div>\r\n      <\/div>\r\n    <\/div><br>"
+
             
           if(value[i]["Title"] == undefined) 
           {
@@ -55,6 +66,7 @@
         
         document.getElementById("whitelist").innerHTML = html;
         l();
+        lol(value.length);
       });
                             
                             
@@ -127,6 +139,9 @@
       .s_tlt {
         font-size : 20px;
       }
+      .timeago {
+        width : 100%
+      }
       .s {
         font-size : 12px;
         font-style : 
@@ -136,6 +151,11 @@
         text-emphasis-color: black;
         text-decoration-color: black;
         color: black;
+      }
+      .comm {
+        background-color:lightgray;
+        margin: 5px;
+        padding-left;4px;
       }
       .box {
         border-style : solid;
@@ -153,10 +173,11 @@
         background-color: #333; /* Modern Browsers */
       }
       .ebox {
-        width : 50%;
-
+        width : 58%; 
       }
-      
+      .content {
+       
+      }
       .bot_text {
         color: white;
       }
@@ -198,13 +219,103 @@
 
       <!-- devider lmao wtf this literally adds space because a guy lazy a gain --> 
       <br>
+      <div id="form"> </div>
       
       <div class="table" id="whitelist"> Loading posts....</div>
       
       
+      <div class="cn_spec2"> 
+        <div class="cn_box">
+          <div id="b"></div>
+        Updates for comments are slow and can take up to 2minutes
+        <form action="https://docs.google.com/forms/d/e/1FAIpQLSfYJVEfbJdM2yO7S11PH0jgFXwVqYd1LFJPmdcoK3hWXybRrg/formResponse"
+            target="_self"
+            id="bootstrapForm"
+            method="POST">
+          <legend for="552899206">Post a comment</legend>
+          
+          <div class="form-group">
+            <input id="1287446727" type="text" name="entry.1287446727" class="form-control" required>
+            <input class="btn btn-primary" type="submit" value="Submit">
+          </div>
+
+
+        <input type="hidden" name="fvv" value="1">
+        <input type="hidden" name="fbzx" value="-6188571478344300688">
+
+        <input type="hidden" name="pageHistory" value="0">
+
+        
+        </form>
+          <div id="com">Loading....</div>
+        </div>
+      </div>
+      <script>
+        $('#bootstrapForm').submit(function (event) {
+        event.preventDefault()
+        var extraData = {}
+        $('#bootstrapForm').ajaxSubmit({
+        data: extraData,
+        dataType: 'jsonp',  // This won't really work. It's just to use a GET instead of a POST to allow cookies from different domain.
+        error: function () {
+        // Submit of form should be successful but JSONP callback will fail because Google Forms
+        // does not support it, so this is handled as a failure.
+          document.getElementById("b").innerHTML = "Your Comment has been submitted";
+        // You can also redirect the user to a custom thank-you page:
+        // window.location = 'http://www.mydomain.com/thankyoupage.html'
+        }
+        })
+        })
+      </script>
+
+      // <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js" integrity="sha256-2Pjr1OlpZMY6qesJM68t2v39t+lMLvxwpa8QlRjJroA=" crossorigin="anonymous"></script>
+      //
+      <script>
+        function csvJSON(csv){
+          var lines=csv.split("\n");
+          var result = [];
+          var headers=lines[0].split(",");
+          for(var i=1;i<lines.length;i++){
+            var obj = {};
+            var currentline=lines[i].split(",");
+            for(var j=0;j<headers.length;j++){
+              obj[headers[j]] = currentline[j];
+            }
+            result.push(obj);
+          }
+
+          //return result; //JavaScript object
+          return result //JSON
+
+        }// this took along time
+        setInterval(function(){$.ajax("https://docs.google.com/spreadsheets/d/e/2PACX-1vReQvaL5tZJQjEyNl2OCMVDfElkZH2hNkpm44OgQ-Kj-ty8Y7pDuiSSj-2ARkTGMNI7Y1_3O4gUc3g-/pub?output=csv").done(function(result){
+          var value = csvJSON(result)
+          var com2 = [];
+          var com3 = [];
+          console.log(value);
+          for(var i=0;i < value.length;i++)
+          {
+            com2[com2.length] =  value[i]["comment\r"]
+            com3[com3.length] =  value[i]["Timestamp"]
+          }
+
+          var com = "";
+          for(var i=com2.length-1;i >= 0;i--)
+          {
+            com = com + "<div class=\"comm\">" + com2[i];
+            com = com + " (<time class=\"timeago\" datetime=\"" +  com3[i] + "\"><\/time>)"
+            com = com + "</div>"
+          }
+          document.getElementById("com").innerHTML = com;
+        l();
+        });},1000) 
+      </script>
+      
+      
+
     
       <br><br><br><br><br>
-      <br><br><br><div class = "bot_text">Website programmed by Theron   | Server created by eli. | API's Used (<a href="https://mcapi.us/">mcapi</a>) (<a href="https://jquery.com/">Jquery</a>) (<a href="https://timeago.yarp.com/">timeago</a>)  | html5,JS </div> 
+      <br><br><br><div class = "bot_text">Website programmed by Theron   | Server created by eli. | API's Used (<a href="https://mcapi.us/" target="_blank">mcapi</a>) (<a href="https://jquery.com/" target="_blank">Jquery</a>) (<a href="https://timeago.yarp.com/" target="_blank">timeago</a>)  | html5,JS  </div>
     </div>
 
 
