@@ -10,7 +10,7 @@
     
     
     
-  
+    <link rel='shortcut icon' type='image/x-icon' href='favicon.ico' />
     <script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
     <script src="http://malsup.github.com/jquery.form.js"></script> 
     <script>
@@ -276,9 +276,20 @@
         </div>
       </div>
       <script>
+        var lastval="";
+        var submitcount = 1;
         $('#bootstrapForm').submit(function (event) {
         event.preventDefault()
         var extraData = {}
+        if( submitcount > 2)
+        {
+          document.getElementById("b").innerHTML = "Maximum comments acceded" + submitcount
+          setTimeout(function() {
+            // Do something after 5 seconds
+            document.getElementById("b").innerHTML = "";
+          }, 5000);
+          return
+        }
         $('#bootstrapForm').ajaxSubmit({
         data: extraData,
         dataType: 'jsonp',  // This won't really work. It's just to use a GET instead of a POST to allow cookies from different domain.
@@ -287,7 +298,15 @@
         // does not support it, so this is handled as a failure.
    document.getElementById("1287446727").setAttribute("value", "");
           document.getElementById("1287446727").value ="";
-          alert("Your Comment has been submitted \n May take up to 2mins to post.");
+          lastval = document.getElementById("1287446727").value 
+          document.getElementById("b").innerHTML = "Your Comment has been submitted \nMay take up to 2mins to post. | count : " + submitcount + " |";
+          submitcount++;
+          setTimeout(function() {
+            // Do something after 5 seconds
+            document.getElementById("b").innerHTML = "";
+          }, 5000);
+
+          
         
         // You can also redirect the user to a custom thank-you page:
         // window.location = 'http://www.mydomain.com/thankyoupage.html'
