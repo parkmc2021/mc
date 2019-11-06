@@ -134,24 +134,11 @@
         var value2 = JSON.stringify(value)
         
         var table = "<table>";
-        table = table + "<tr><td>username</td><td>status</td><td>IRL name</td></tr>"
+        table = table + "<tr><td>username</td><td>name</td><td>status</td><td>reason</td></tr>"
         for(var i=0;i < value.length;i++)
         {
           table = table + "<tr>"
           table = table + "<td>" + value[i]["What is your in-game username?"] + "</td>";
-          
-          
-          
-          
-          if (value[i]["status\r"] == "\r") 
-          {
-            table = table + "<td>" + "Under Review" + "</td>";
-          }else
-          {
-
-            table = table + "<td>" + value[i]["status\r"] + "</td>";
-          }
-          
           
           
           if (value[i]["What is your first name?"] == "") 
@@ -162,6 +149,27 @@
             table = table + "<td>" + value[i]["What is your first name?"]+ "</td>";
           }
           
+          if (value[i]["status\r"] == "\r") 
+          {
+            table = table + "<td>" + "Under Review" + "</td>";
+          }else
+          {
+
+            table = table + "<td>" + value[i]["status\r"] + "</td>";
+          }
+          
+          if (value[i]["reason"] == "") 
+          {
+            table = table + "<td>" + "not specified" + "</td>";
+          }else
+          {
+
+            table = table + "<td>" + value[i]["reason"] + "</td>";
+          }
+          
+          
+          
+          
           table = table + "</tr>"
         }
         table = table + "</table>";
@@ -171,7 +179,7 @@
   </head>
   <body>
     <!--  top line -->
-    <a class="n" href="index.html">Home</a>  |  <a class ="nd" href="whitelist.html">Whitelist</a> | <a class="n" href="updates.html">Updates</a>   
+    <a class="n" href="index.html">Home</a>  |  <a class ="nd" href="whitelist.html">Whitelist</a> | <a class="n" href="updates.html">Updates</a> | <a class="n" href="mc.parkrose.cf:8123/#">Map</a>  
 
     <!-- all contenets --> 
     <div class="w_cn"> 
@@ -198,13 +206,12 @@
             <div class="cn_left">
               <div  class="ebox"> 
                 
-                How to get whitelisted,<br><br>
+                How to get whitelisted, (how to get in)<br><br>
                 
-                Fill out <a  href="whitelistform.html">this</a>  form.
+                1. Fill out <a  href="whitelistform.html">this</a>  form.
                 <br><br>
-                Scroll to the bottom to check the status after filling it out.<br><br>
-                You can pm someone on discord if for some reason, 
-                you actually dont get whitelisted.<br><br>
+                2. Scroll to the bottom to check the status after filling it out.<br><br>
+                3. Pm c2a4x6 or whimsical on discord and they will whitelist you.<br><br>
                 Names on whitelist can be removed if requested.
 
               </div>  
@@ -249,8 +256,16 @@
                     <td>The person who submitted the form will not be accepted ever.</td>
                   </tr>
                   <tr>
+                    <td>Expired</td>
+                    <td>Waited to long please refill the form</td>
+                  </tr>
+                  <tr>
+                    <td>Jailed</td>
+                    <td>Tempary ban.</td>
+                  </tr>
+                  <tr>
                     <td>Whitelisted</td>
-                    <td>You can play!.</td>
+                    <td>Join the server to play.</td>
                   </tr>
 
                 </table> <br><br>
